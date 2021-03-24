@@ -23,7 +23,7 @@ const Ticker = ({ data }) => {
       montoOperado,
       apertura,
       ultimoPrecio,
-      fechaHora,
+      fechaHoraFormated,
       cantidadOperaciones,
     } = data[0];
     console.log(variacionPuntos < 0);
@@ -52,7 +52,7 @@ const Ticker = ({ data }) => {
             <p>{montoOperado} M</p>
           </Col>
           <Col>
-            <p>{fechaHora.match(/\d\d:\d\d:\d\d/)} hs</p>
+            <p>{fechaHoraFormated} hs</p>
           </Col>
           <Col>
             <p>{cantidadOperaciones}</p>
