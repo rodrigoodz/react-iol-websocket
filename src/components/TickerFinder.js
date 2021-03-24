@@ -8,23 +8,42 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   padding: 0.4rem 0;
 `;
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Input = styled.input`
-  border: 1px solid red;
   flex: 1;
+  height: 1.4rem;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  outline: none;
+  border-width: 0;
+  background-color: #84817a;
+
+  &::placeholder {
+    color: #aaa69d;
+  }
 `;
 
 const Button = styled.button`
   margin-left: 1rem;
+  font-size: 1rem;
+  height: 1.4rem;
+  background-color: #84817a;
+  border-width: 0;
+  border-radius: 0.2rem;
+  outline: none;
+
+  &:hover {
+    background-color: #aaa69d;
+    transform: translateY(-1px);
+  }
 `;
 
 const Error = styled.p`
@@ -80,7 +99,7 @@ const TickerFinder = () => {
           value={ticker}
           onChange={handleInput}
         />
-        <Button type="button" onClick={handleButton}>
+        <Button type="submit" onClick={handleButton}>
           Buscar
         </Button>
       </FormWrapper>
