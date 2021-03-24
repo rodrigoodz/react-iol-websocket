@@ -5,7 +5,7 @@ const TitleWrapper = styled.div`
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  padding: 2rem;
+  padding-top: 1.2rem;
   color: #227093;
 `;
 
