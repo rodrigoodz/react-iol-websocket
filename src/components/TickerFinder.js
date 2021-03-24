@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import getIdByTicker from "../helpers/getIdByTicker";
 import isNumber from "../helpers/isNumber";
+import Button from "./Button";
 
 const Container = styled.div`
   display: flex;
@@ -28,21 +29,6 @@ const Input = styled.input`
 
   &::placeholder {
     color: #aaa69d;
-  }
-`;
-
-const Button = styled.button`
-  margin-left: 1rem;
-  font-size: 1rem;
-  height: 1.4rem;
-  background-color: #84817a;
-  border-width: 0;
-  border-radius: 0.2rem;
-  outline: none;
-
-  &:hover {
-    background-color: #aaa69d;
-    transform: translateY(-1px);
   }
 `;
 
@@ -99,9 +85,7 @@ const TickerFinder = () => {
           value={ticker}
           onChange={handleInput}
         />
-        <Button type="submit" onClick={handleButton}>
-          Buscar
-        </Button>
+        <Button text="Buscar" type="submit" onClick={handleButton} />
       </FormWrapper>
       {errorMessage && <Error>{errorMessage}</Error>}
     </Container>
