@@ -12,10 +12,12 @@ const H1 = styled.h1`
   color: #631414;
   font-size: 2rem;
   margin: 0;
+  text-align: center;
 `;
 
 const H2 = styled.h2`
   color: #631414;
+  text-align: center;
 `;
 
 const OutMarketTime = () => {
