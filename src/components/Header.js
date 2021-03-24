@@ -15,7 +15,10 @@ const Header = () => {
         <Text>ID</Text>
       </Col>
       <Col>
-        <Text>Ultimo Precio</Text>
+        <Text>Variacion</Text>
+      </Col>
+      <Col>
+        <Text>Ult. Precio</Text>
       </Col>
       <Col>
         <Text>Apertura</Text>
