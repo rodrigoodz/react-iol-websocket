@@ -85,7 +85,7 @@ const TickerFinder = () => {
           value={ticker}
           onChange={handleInput}
         />
-        <Button text="Buscar" type="submit" onClick={handleButton} />
+        <Button text="Buscar" handleButton={handleButton} />
       </FormWrapper>
       {errorMessage && <Error>{errorMessage}</Error>}
     </Container>
