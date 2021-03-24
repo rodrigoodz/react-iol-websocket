@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useWS } from "../hooks/useWS";
 import Header from "./Header";
-import Ticker from "./Ticker";
+import List from "./List";
+import OutMarketTime from "./OutMarketTime";
 
 const Wrapper = styled.section`
   background-color: #8e44ad;
@@ -14,11 +14,13 @@ const Wrapper = styled.section`
 `;
 
 const Websocket = () => {
-  const [wsData] = useWS();
   return (
     <Wrapper>
       <Header />
-      <>{wsData.data && <Ticker data={wsData.data.arguments} />}</>
+      <>
+        <List />
+        <OutMarketTime />
+      </>
     </Wrapper>
   );
 };
