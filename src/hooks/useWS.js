@@ -14,45 +14,47 @@ export const useWS = () => {
       `wss://streaming-externo-v2.invertironline.com/MarketHub?access_token=${token}`
     );
     ws.onopen = function () {
-      setWsData({ ...wsData, message: "Opened" });
-      setWsData({ ...wsData, message: "Proponiendo Protocolos" });
-      setWsData({ ...wsData, message: "Protocolo Sugerido" });
+      // setWsData({ ...wsData, message: "Conexion Abierta" });
+      // setWsData({ ...wsData, message: "Proponiendo Protocolos" });
+      // setWsData({ ...wsData, message: "Protocolo Sugerido" });
+      console.log("Conexion Abierta");
+      console.log("Proponiendo Protocolos");
+      console.log("Protocolo Sugerido");
 
-      //   console.log("OPENED");
-      //   console.log("Proponiendo Protocolos");
-      //   console.log("Protocolo sugerido: ");
       ws.send('{"protocol":"json","version":1}' + String.fromCharCode(30));
     };
     ws.onclose = function () {
-      //   console.log("CLOSED");
-      //   setWsData("Cerrado");
-      setWsData({ ...wsData, message: "Cerrado" });
+      // setWsData({ ...wsData, message: "Conexion Cerrada" });
+      console.log("Conexion Cerrada");
     };
     ws.onmessage = function (message) {
       const accepted = "{}" + String.fromCharCode(30);
       const ping = '{"type":6}' + String.fromCharCode(30);
       if (message.data === accepted) {
-        // console.log("Protocolo aceptado.");
-        // setWsData("Protocolo aceptado");
         ws.send(
           '{"arguments":["3611-3"],"invocationId":"0","target":"JoinGroup","type":1}'
         );
-        console.log("suscribiendo aluar");
+        console.log("suscribiendo aapl");
+        ws.send(
+          '{"arguments":["66543-3"],"invocationId":"1","target":"JoinGroup","type":1}'
+        );
+        console.log("suscribiendo tsla");
       } else if (message.data === ping) {
-        // console.log("recibido ping");
+        console.log("Recibido Ping");
+        // setWsData({ ...wsData, message: "Recibido Ping" });
         ws.send(ping);
-        // console.log("enviado ping");
+        console.log(`Enviado Ping: ${ping}`);
+        // setWsData({ ...wsData, message: `Enviado Ping: ${ping}` });
       } else {
-        // console.log("recibido: " + message);
-        // console.log(JSON.parse(message.data.slice(0, -1)));
         setWsData({ ...wsData, data: JSON.parse(message.data.slice(0, -1)) });
-        // ws.send(ping);
-        // console.log("enviado ping");
+        console.log(JSON.parse(message.data.slice(0, -1)));
+        // setWsData({ ...wsData, message: `Enviado Ping: ${ping}` });
+        console.log(`Enviado Ping: ${ping}`);
       }
     };
     ws.onerror = function (error) {
-      //   console.log("Error:" + error);
-      setWsData({ ...wsData, error: `error: ${error}` });
+      console.log("Error:" + error);
+      // setWsData({ ...wsData, error: `error: ${error}` });
     };
   }, []);
 
