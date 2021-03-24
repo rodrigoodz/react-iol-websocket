@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Websocket from "./components/Websocket";
 import { Helmet } from "react-helmet";
 import Title from "./components/Title";
-import IdFinder from "./components/IdFinder";
+import TickerFinder from "./components/TickerFinder";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,7 +26,7 @@ function App() {
       </Helmet>
       <GlobalStyle />
       <Title text="Websocket IOL" />
-      <IdFinder />
+      <TickerFinder />
       <Websocket />
     </>
   );

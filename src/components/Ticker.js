@@ -8,9 +8,9 @@ const Wrapper = styled.section`
 `;
 
 const Ticker = ({ data }) => {
-  if (data) {
-    console.log(data[0]);
-  }
+  // if (data) {
+  //   console.log(data[0]);
+  // }
 
   if (!data) {
     return null;
@@ -26,7 +26,6 @@ const Ticker = ({ data }) => {
       fechaHoraFormated,
       cantidadOperaciones,
     } = data[0];
-    console.log(variacionPuntos < 0);
     return (
       <Wrapper variacion={variacionPuntos}>
         <Row>
