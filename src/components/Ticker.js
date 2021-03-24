@@ -1,4 +1,7 @@
 import React from "react";
+import styled from "styled-components";
+import Col from "./Col";
+import Row from "./Row";
 
 const Ticker = ({ data }) => {
   if (data) {
@@ -15,17 +18,36 @@ const Ticker = ({ data }) => {
       montoOperado,
       apertura,
       ultimoPrecio,
+      fechaHora,
+      cantidadOperaciones,
     } = data[0];
     return (
-      <div>
-        <h2>Id: {idTitulo}</h2>
-        <h3>Ultimo Precio: {ultimoPrecio}</h3>
-        <h3>Apetura: {apertura}</h3>
-        <h3>Maximo: {maximo}$</h3>
-        <h3>Minimo: {minimo}$</h3>
-        <h3>Monto Operado {montoOperado}M</h3>
-        <h3>Fecha Hora {montoOperado}M</h3>
-      </div>
+      <Row>
+        <Col>
+          <p>{idTitulo}</p>
+        </Col>
+        <Col>
+          <p>{ultimoPrecio}$</p>
+        </Col>
+        <Col>
+          <p>{apertura}$</p>
+        </Col>
+        <Col>
+          <p>{maximo}$</p>
+        </Col>
+        <Col>
+          <p>{minimo}$</p>
+        </Col>
+        <Col>
+          <p>{montoOperado}M</p>
+        </Col>
+        <Col>
+          <p>{fechaHora}</p>
+        </Col>
+        <Col>
+          <p>{cantidadOperaciones}</p>
+        </Col>
+      </Row>
     );
   }
 };

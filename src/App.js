@@ -1,6 +1,7 @@
-import styled, { createGlobalStyle } from "styled-components";
+import  { createGlobalStyle } from "styled-components";
 import Websocket from "./components/Websocket";
 import { Helmet } from "react-helmet";
+import Title from "./components/Title";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,23 +13,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Title = styled.div`
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 2rem;
-  color: #227093;
-`;
-
 function App() {
   return (
     <>
       <Helmet>
-        <title>My Title</title>
-        <meta name="description" content="Helmet application" />
+        <title>Websocket IOL</title>
+        <meta
+          name="description"
+          content="Websocket IOL para obtener las cotizaciones en tiempo real"
+        />
       </Helmet>
       <GlobalStyle />
-      <Title>Websocket IOL </Title>
+      <Title text="Websocket IOL" />
       <Websocket />
     </>
   );
