@@ -6,6 +6,7 @@ import Button from "./Button";
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -14,14 +15,19 @@ const Container = styled.div`
 
 const FormWrapper = styled.form`
   display: flex;
-  justify-content: center;
+  width: 50%;
+  justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const Input = styled.input`
-  flex: 1;
   height: 1.4rem;
   font-size: 1rem;
+  width: 80%;
   border-radius: 0.2rem;
   outline: none;
   border-width: 0;
@@ -35,6 +41,7 @@ const Input = styled.input`
 const Error = styled.p`
   color: red;
   font-weight: bold;
+  margin: 0;
 `;
 
 const TickerFinder = () => {
@@ -54,19 +61,25 @@ const TickerFinder = () => {
       if (isNumber(ticker)) {
         // si es id lo agrego directamente
         console.log(ticker);
+        //TODO agregar cuando es numero
+        setTicker("");
       } else {
         //   sino busco el id del ticker
         const dataTicker = getIdByTicker(ticker);
         if (!dataTicker) {
           setErrorMessage("No se pudo encontrar el ticker solicitado");
+          setTicker("");
+
           setInterval(() => {
             setErrorMessage("");
-          }, 3000);
+          }, 4000);
         } else {
           console.log(dataTicker);
           alert(
             `ID: ${dataTicker.ID} \nTipo: ${dataTicker.Tipo} \nDescripcion: ${dataTicker.Descripcion}`
           );
+          //TODO agregar cuando es texto, tomando el id de dataTicker.ID
+          setTicker("");
         }
       }
     }

@@ -1,20 +1,30 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Websocket from "./components/Websocket";
 import { Helmet } from "react-helmet";
 import Title from "./components/Title";
-import TickerFinder from "./components/TickerFinder";
+import TokenInfo from "./components/TokenInfo";
+import { useState } from "react";
+import OutMarketTime from "./components/OutMarketTime";
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  * {
     margin: 0;
     padding: 0;
-    background: #d1ccc0;
     box-sizing:border-box;
-    font-family: Open-Sans, Helvetica, Sans-Serif;
+    font-family: 'Roboto', sans-serif;
+  }
+`;
+const BodyStyle = createGlobalStyle`
+  body {
+    background-color: #34495e
+
   }
 `;
 
 function App() {
+  const [token, setToken] = useState("");
+  const [disableInput, setDisableInput] = useState(false);
+
   return (
     <>
       <Helmet>
@@ -25,9 +35,18 @@ function App() {
         />
       </Helmet>
       <GlobalStyle />
+      <BodyStyle />
       <Title text="Websocket IOL" />
-      <TickerFinder />
-      <Websocket />
+
+      <OutMarketTime>
+        <TokenInfo
+          token={token}
+          setToken={setToken}
+          disableInput={disableInput}
+          setDisableInput={setDisableInput}
+        />
+        {disableInput ? <Websocket token={token} /> : null}
+      </OutMarketTime>
     </>
   );
 }

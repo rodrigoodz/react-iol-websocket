@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useWS = () => {
+export const useWS = (token) => {
   const [wsData, setWsData] = useState({
     data: null,
     message: "",
@@ -8,8 +8,6 @@ export const useWS = () => {
   });
 
   useEffect(() => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzA4NjQiLCJqdGkiOiIxM2ZhN2JkZS1kODI2LTRkOWItODJlNS05ZWZkZTBiOTdkMzMiLCJleHAiOjE2MTY2MTc1NDYsImlzcyI6Imh0dHBzOi8vc3RyZWFtaW5nLXYyLmludmVydGlyb25saW5lLmNvbSIsImF1ZCI6IkludmVydGlyT25saW5lLmNvbSJ9.NNdAwUhmUJjMb0DthKEgQZCDnQrZFK7ctXkDA7bntOg";
     var ws = new WebSocket(
       `wss://streaming-externo-v2.invertironline.com/MarketHub?access_token=${token}`
     );

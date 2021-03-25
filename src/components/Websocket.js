@@ -1,26 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import { useWS } from "../hooks/useWS";
 import List from "./List";
-import OutMarketTime from "./OutMarketTime";
+import TickerFinder from "./TickerFinder";
 
 const Wrapper = styled.section`
-  background-color: #8e44ad;
+  background-color: #bdc3c7;
   border-radius: 1rem;
-  border: 1px solid black;
+  box-shadow: 4px 4px 50px 0px rgba(0, 0, 0, 0.75);
   max-width: 80%;
-  margin: auto;
+  margin: 1rem auto;
   height: 100vh;
 `;
 
-const Websocket = () => {
+const Websocket = ({ token }) => {
+  const [wsData] = useWS(token);
+  console.log(wsData);
+
   return (
     <Wrapper>
+      <TickerFinder />
       <Header />
-      <>
-        <List />
-        <OutMarketTime />
-      </>
+      <hr />
+      <List wsData={wsData} />
     </Wrapper>
   );
 };
