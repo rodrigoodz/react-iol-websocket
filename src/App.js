@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Websocket from "./components/Websocket";
 import { Helmet } from "react-helmet";
 import Title from "./components/Title";
