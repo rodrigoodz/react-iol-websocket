@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/rodrigoodz/react-iol-websocket/static/js/main.b670f3d5.chunk.js",
+    "main.js.map": "/rodrigoodz/react-iol-websocket/static/js/main.b670f3d5.chunk.js.map",
+    "runtime-main.js": "/rodrigoodz/react-iol-websocket/static/js/runtime-main.62d588ad.js",
+    "runtime-main.js.map": "/rodrigoodz/react-iol-websocket/static/js/runtime-main.62d588ad.js.map",
+    "static/js/2.215cff3e.chunk.js": "/rodrigoodz/react-iol-websocket/static/js/2.215cff3e.chunk.js",
+    "static/js/2.215cff3e.chunk.js.map": "/rodrigoodz/react-iol-websocket/static/js/2.215cff3e.chunk.js.map",
+    "index.html": "/rodrigoodz/react-iol-websocket/index.html",
+    "static/js/2.215cff3e.chunk.js.LICENSE.txt": "/rodrigoodz/react-iol-websocket/static/js/2.215cff3e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.62d588ad.js",
+    "static/js/2.215cff3e.chunk.js",
+    "static/js/main.b670f3d5.chunk.js"
+  ]
+}
