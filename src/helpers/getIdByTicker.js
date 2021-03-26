@@ -1,7 +1,5 @@
-import { titulos } from "../db/ids";
-
-const getIdByTicker = (ticker) => {
-  return titulos.find((a) => ticker.toUpperCase() === a.Simbolo);
+const getIdByTicker = async (ticker) => {
+  return null;
 };
 
 export default getIdByTicker;

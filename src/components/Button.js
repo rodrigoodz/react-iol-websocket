@@ -16,9 +16,9 @@ const BTN = styled.button`
   }
 `;
 
-const Button = ({ text, handleButton }) => {
+const Button = ({ text, handleButton, isDisabled = false }) => {
   return (
-    <BTN type="submit" onClick={handleButton}>
+    <BTN type="submit" onClick={handleButton} disabled={isDisabled}>
       {text}
     </BTN>
   );

@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import getIdByTicker from "../helpers/getIdByTicker";
 import isNumber from "../helpers/isNumber";
 import Button from "./Button";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +56,8 @@ const Error = styled.p`
 `;
 
 const TickerFinder = () => {
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [ticker, setTicker] = useState("");
 
   const handleButton = (e) => {
@@ -59,28 +71,13 @@ const TickerFinder = () => {
       setErrorMessage("");
 
       if (isNumber(ticker)) {
-        // si es id lo agrego directamente
-        console.log(ticker);
-        //TODO agregar cuando es numero
-        setTicker("");
+        console.log("agregar id");
+        // si es  numero lo agrego...
       } else {
-        //   sino busco el id del ticker
-        const dataTicker = getIdByTicker(ticker);
-        if (!dataTicker) {
-          setErrorMessage("No se pudo encontrar el ticker solicitado");
-          setTicker("");
-
-          setInterval(() => {
-            setErrorMessage("");
-          }, 4000);
-        } else {
-          console.log(dataTicker);
-          alert(
-            `ID: ${dataTicker.ID} \nTipo: ${dataTicker.Tipo} \nDescripcion: ${dataTicker.Descripcion}`
-          );
-          //TODO agregar cuando es texto, tomando el id de dataTicker.ID
-          setTicker("");
-        }
+        setErrorMessage("Error! Ingresá un ID");
+        setInterval(() => {
+          setErrorMessage("");
+        }, 3000);
       }
     }
   };
@@ -93,12 +90,16 @@ const TickerFinder = () => {
     <Container>
       <FormWrapper>
         <Input
-          placeholder="Ingresá nombre ticker o ID"
+          placeholder="Ingresá ID cotización"
           type="text"
           value={ticker}
           onChange={handleInput}
         />
-        <Button text="Buscar" handleButton={handleButton} />
+        <Button
+          text="Agregar"
+          handleButton={handleButton}
+          isDisabled={errorMessage.length === 0 ? false : true}
+        />
       </FormWrapper>
       {errorMessage && <Error>{errorMessage}</Error>}
     </Container>
