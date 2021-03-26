@@ -14,10 +14,19 @@ const Wrapper = styled.section`
   height: 100vh;
 `;
 
+const Error = styled.p`
+  font-size: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: #631414;
+`;
+
 const Websocket = ({ token }) => {
   const [wsData] = useWS(token);
   console.log(wsData);
-
+  if (wsData.error) {
+    return <Error>Error en conexion con Websocket</Error>;
+  }
   return (
     <Wrapper>
       <TickerFinder />

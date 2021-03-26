@@ -51,8 +51,8 @@ export const useWS = (token) => {
       }
     };
     ws.onerror = function (error) {
-      console.log("Error:" + JSON.stringify(error));
-      // setWsData({ ...wsData, error: `error: ${error}` });
+      console.log("Error: " + JSON.stringify(error));
+      setWsData({ ...wsData, error: `Error: ${JSON.stringify(error)}` });
     };
   }, []);
 
