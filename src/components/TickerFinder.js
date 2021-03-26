@@ -3,6 +3,7 @@ import styled from "styled-components";
 import isNumber from "../helpers/isNumber";
 import Button from "./Button";
 import Modal from "react-modal";
+import SearchModal from "./SearchModal";
 
 const customStyles = {
   content: {
@@ -60,7 +61,7 @@ const TickerFinder = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [ticker, setTicker] = useState("");
 
-  const handleButton = (e) => {
+  const handleAddButton = (e) => {
     e.preventDefault();
     if (ticker.length < 1) {
       setErrorMessage("Error! No hay nada ingresado");
@@ -82,6 +83,11 @@ const TickerFinder = () => {
     }
   };
 
+  const handleSearchButton = (e) => {
+    e.preventDefault();
+    setIsOpen(true);
+  };
+
   const handleInput = (e) => {
     setTicker(e.target.value);
   };
@@ -97,9 +103,23 @@ const TickerFinder = () => {
         />
         <Button
           text="Agregar"
-          handleButton={handleButton}
+          handleButton={handleAddButton}
           isDisabled={errorMessage.length === 0 ? false : true}
         />
+        <Button
+          text="Obtener ID de una cotización"
+          handleButton={handleSearchButton}
+          isDisabled={errorMessage.length === 0 ? false : true}
+        />
+        <Modal
+          isOpen={modalIsOpen}
+          ariaHideApp={false}
+          onRequestClose={() => setIsOpen(false)}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <SearchModal />
+        </Modal>
       </FormWrapper>
       {errorMessage && <Error>{errorMessage}</Error>}
     </Container>
