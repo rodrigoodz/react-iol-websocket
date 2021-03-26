@@ -5,6 +5,7 @@ import { useWS } from "../hooks/useWS";
 import List from "./List";
 import TickerFinder from "./TickerFinder";
 import DataContext from "../context/DataContext";
+import Loader from "react-loader-spinner";
 
 const Wrapper = styled.section`
   background-color: #bdc3c7;
@@ -22,19 +23,34 @@ const Error = styled.p`
   color: #631414;
 `;
 
+const WsInfo = styled.div`
+  text-align: center;
+  color: blue;
+`;
+
 const WebsocketList = () => {
   const { token } = useContext(DataContext);
   const [wsData] = useWS(token);
-  console.log(wsData);
-  if (wsData.error) {
+  const { data, message, error } = wsData;
+
+  if (error) {
     return <Error>Error en conexion con Websocket</Error>;
   }
+  console.log("data1", data);
   return (
     <Wrapper>
       <TickerFinder />
+
+      <WsInfo>
+        {message.length === 0 ? (
+          <Loader type="TailSpin" color="blue" height={20} width={20} />
+        ) : (
+          message
+        )}
+      </WsInfo>
       <Header />
       <hr />
-      <List wsData={wsData} />
+      <List data={data} />
     </Wrapper>
   );
 };

@@ -12,18 +12,18 @@ export const useWS = (token) => {
       `wss://streaming-externo-v2.invertironline.com/MarketHub?access_token=${token}`
     );
     ws.onopen = function () {
-      // setWsData({ ...wsData, message: "Conexion Abierta" });
-      // setWsData({ ...wsData, message: "Proponiendo Protocolos" });
-      // setWsData({ ...wsData, message: "Protocolo Sugerido" });
-      console.log("Conexion Abierta");
-      console.log("Proponiendo Protocolos");
-      console.log("Protocolo Sugerido");
+      setWsData({ ...wsData, message: "Conexion Abierta" });
+      setWsData({ ...wsData, message: "Proponiendo Protocolos" });
+      setWsData({ ...wsData, message: "Protocolo Sugerido" });
+      // console.log("Conexion Abierta");
+      // console.log("Proponiendo Protocolos");
+      // console.log("Protocolo Sugerido");
 
       ws.send('{"protocol":"json","version":1}' + String.fromCharCode(30));
     };
     ws.onclose = function () {
-      // setWsData({ ...wsData, message: "Conexion Cerrada" });
-      console.log("Conexion Cerrada");
+      setWsData({ ...wsData, message: "Conexion Cerrada" });
+      // console.log("Conexion Cerrada");
     };
     ws.onmessage = function (message) {
       const accepted = "{}" + String.fromCharCode(30);
@@ -32,11 +32,9 @@ export const useWS = (token) => {
         ws.send(
           '{"arguments":["3611-3"],"invocationId":"0","target":"JoinGroup","type":1}'
         );
+
+        // setWsData({ ...wsData, message: "Suscribiendo YPFD" });
         console.log("suscribiendo aapl");
-        ws.send(
-          '{"arguments":["66543-3"],"invocationId":"1","target":"JoinGroup","type":1}'
-        );
-        console.log("suscribiendo tsla");
       } else if (message.data === ping) {
         console.log("Recibido Ping");
         // setWsData({ ...wsData, message: "Recibido Ping" });
@@ -51,7 +49,7 @@ export const useWS = (token) => {
       }
     };
     ws.onerror = function (error) {
-      console.log("Error: " + JSON.stringify(error));
+      // console.log("Error: " + JSON.stringify(error));
       setWsData({ ...wsData, error: `Error: ${JSON.stringify(error)}` });
     };
   }, []);

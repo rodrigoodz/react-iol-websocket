@@ -1,11 +1,11 @@
 import React from "react";
 import Ticker from "./Ticker";
 
-const List = ({ wsData }) => {
-  if (!wsData) {
+const List = ({ data }) => {
+  if (!data) {
     return null;
   }
-  return <div>{wsData.data && <Ticker data={wsData.data.arguments} />}</div>;
+  return <div>{data.arguments && <Ticker data={data.arguments} />}</div>;
 };
 
 export default List;
