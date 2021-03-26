@@ -52,8 +52,7 @@ const H2 = styled.h2`
 
 const OutMarketTime = ({ children }) => {
   const date = new Date();
-
-  if (date.getHours() < 17 && date.getHours() > 11) {
+  if (date.getHours() <= 17 && date.getHours() >= 11) {
     return <>{children}</>;
   } else {
     return (
