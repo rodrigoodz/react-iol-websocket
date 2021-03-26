@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Websocket from "./WebsocketList";
+import WebsocketList from "./WebsocketList";
 import { Helmet } from "react-helmet";
 import Title from "./Title";
 import TokenInfo from "./TokenInfo";
@@ -22,9 +22,6 @@ const BodyStyle = createGlobalStyle`
 `;
 
 function WebsocketApp() {
-  const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzA4NjQiLCJqdGkiOiJhYjBmN2U1Zi1kMTdjLTRlOTQtODUyNy03NzcyM2I4MWU2MDMiLCJleHAiOjE2MTY3OTA3MjcsImlzcyI6Imh0dHBzOi8vc3RyZWFtaW5nLXYyLmludmVydGlyb25saW5lLmNvbSIsImF1ZCI6IkludmVydGlyT25saW5lLmNvbSJ9.svJePSuUmIAOMpMNH2Hh_l7QTpiDhv-dvjqaG6dIigo"
-  );
   const [disableInput, setDisableInput] = useState(false);
 
   return (
@@ -42,12 +39,10 @@ function WebsocketApp() {
 
       <OutMarketTime>
         <TokenInfo
-          token={token}
-          setToken={setToken}
           disableInput={disableInput}
           setDisableInput={setDisableInput}
         />
-        {disableInput ? <Websocket token={token} /> : null}
+        {disableInput ? <WebsocketList /> : null}
       </OutMarketTime>
     </>
   );

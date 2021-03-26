@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import { useWS } from "../hooks/useWS";
 import List from "./List";
 import TickerFinder from "./TickerFinder";
+import DataContext from "../context/DataContext";
 
 const Wrapper = styled.section`
   background-color: #bdc3c7;
@@ -21,7 +22,8 @@ const Error = styled.p`
   color: #631414;
 `;
 
-const Websocket = ({ token }) => {
+const WebsocketList = () => {
+  const { token } = useContext(DataContext);
   const [wsData] = useWS(token);
   console.log(wsData);
   if (wsData.error) {
@@ -37,4 +39,4 @@ const Websocket = ({ token }) => {
   );
 };
 
-export default Websocket;
+export default WebsocketList;

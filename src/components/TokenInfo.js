@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import DataContext from "../context/DataContext";
 import Button from "./Button";
 
 const Input = styled.input`
@@ -46,17 +47,18 @@ const Wrapper = styled.form`
   align-items: center;
 `;
 
-const TokenInfo = ({ token, setToken, disableInput, setDisableInput }) => {
+const TokenInfo = ({ disableInput, setDisableInput }) => {
   const [errorMessage, setErrorMessage] = useState(null);
+  const [input, setInput] = useState("");
+  const { setToken } = useContext(DataContext);
 
   const handleInput = (e) => {
-    setToken(e.target.value);
+    setInput(e.target.value);
   };
 
   const handleButton = (e, type) => {
     e.preventDefault();
-    console.log(type);
-    if (token.length < 1) {
+    if (input.length < 1) {
       setErrorMessage("Error!");
       setTimeout(() => {
         setErrorMessage(null);
@@ -64,7 +66,9 @@ const TokenInfo = ({ token, setToken, disableInput, setDisableInput }) => {
     } else {
       if (type === "reset") {
         setErrorMessage(null);
-        setToken("");
+        setInput("");
+      } else {
+        setToken(input);
       }
       setDisableInput(!disableInput);
     }
@@ -75,7 +79,7 @@ const TokenInfo = ({ token, setToken, disableInput, setDisableInput }) => {
       <Input
         placeholder="Ingresá token"
         type="text"
-        value={token}
+        value={input}
         onChange={handleInput}
         disabled={disableInput}
       />
