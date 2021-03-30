@@ -30,16 +30,19 @@ const Ticker = ({ data }) => {
     fechaHoraFormated = null,
     cantidadOperaciones = null,
   } = data;
+
   return (
     <Wrapper variacion={variacionPuntos}>
       <Row>
         <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>
-        <Col>{variacionPuntos ? <P>{variacionPuntos}%</P> : <P>-</P>}</Col>
-        <Col>{ultimoPrecio ? <P>{ultimoPrecio}$</P> : <P>-</P>}</Col>
-        <Col>{apertura ? <P>{apertura}$</P> : <P>-</P>}</Col>
-        <Col>{maximo ? <P>{maximo}$</P> : <P>-</P>}</Col>
-        <Col>{minimo ? <P>{minimo}$</P> : <P>-</P>}</Col>
-        <Col>{montoOperado ? <P>{montoOperado}$</P> : <P>-</P>}</Col>
+        <Col>
+          {variacionPuntos ? <P>{variacionPuntos.toFixed(2)}%</P> : <P>-</P>}
+        </Col>
+        <Col>{ultimoPrecio ? <P>{ultimoPrecio.toFixed(2)}$</P> : <P>-</P>}</Col>
+        <Col>{apertura ? <P>{apertura.toFixed(2)}$</P> : <P>-</P>}</Col>
+        <Col>{maximo ? <P>{maximo.toFixed(2)}$</P> : <P>-</P>}</Col>
+        <Col>{minimo ? <P>{minimo.toFixed(2)}$</P> : <P>-</P>}</Col>
+        <Col>{montoOperado ? <P>{montoOperado.toFixed(2)}$</P> : <P>-</P>}</Col>
         <Col>{fechaHoraFormated ? <P>{fechaHoraFormated}hs</P> : <P>-</P>}</Col>
         <Col>
           {cantidadOperaciones ? <P>{cantidadOperaciones}</P> : <P>-</P>}
