@@ -1,58 +1,91 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-export const useWS = (token) => {
-  const [wsData, setWsData] = useState({
-    data: null,
-    message: "",
-    error: null,
-  });
+export const useWS = (token, ids) => {
+  const [data, setData] = useState({});
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
+  const ws = useRef(null);
 
   useEffect(() => {
-    var ws = new WebSocket(
+    ws.current = new WebSocket(
       `wss://streaming-externo-v2.invertironline.com/MarketHub?access_token=${token}`
     );
-    ws.onopen = function () {
-      setWsData({ ...wsData, message: "Conexion Abierta" });
-      setWsData({ ...wsData, message: "Proponiendo Protocolos" });
-      setWsData({ ...wsData, message: "Protocolo Sugerido" });
-      // console.log("Conexion Abierta");
-      // console.log("Proponiendo Protocolos");
-      // console.log("Protocolo Sugerido");
 
-      ws.send('{"protocol":"json","version":1}' + String.fromCharCode(30));
+    ws.current.onopen = function () {
+      console.log("CONEXION ABIERTA");
+      setMessage("Conexion Abierta");
+      console.log("Proponiendo Protocolos");
+      ws.current.send(
+        '{"protocol":"json","version":1}' + String.fromCharCode(30)
+      );
     };
-    ws.onclose = function () {
-      setWsData({ ...wsData, message: "Conexion Cerrada" });
-      // console.log("Conexion Cerrada");
-    };
-    ws.onmessage = function (message) {
-      const accepted = "{}" + String.fromCharCode(30);
-      const ping = '{"type":6}' + String.fromCharCode(30);
-      if (message.data === accepted) {
-        ws.send(
-          '{"arguments":["3611-3"],"invocationId":"0","target":"JoinGroup","type":1}'
-        );
 
-        // setWsData({ ...wsData, message: "Suscribiendo YPFD" });
-        console.log("suscribiendo aapl");
-      } else if (message.data === ping) {
-        console.log("Recibido Ping");
-        // setWsData({ ...wsData, message: "Recibido Ping" });
-        ws.send(ping);
-        console.log(`Enviado Ping: ${ping}`);
-        // setWsData({ ...wsData, message: `Enviado Ping: ${ping}` });
+    ws.current.onclose = function () {
+      setMessage("Conexion Cerrada");
+      console.log("Conexion Cerrada");
+    };
+
+    ws.current.onmessage = function (message) {
+      // console.log(message);
+      let i = 0;
+      if (message.data === "{}" + String.fromCharCode(30)) {
+        console.log("Puntas : Protocolos Aceptados");
+        setMessage("Puntas : Protocolos Aceptados");
+        i = 0;
+        ids.forEach(({ id }) => {
+          ws.current.send(
+            `{"arguments":["${id}-1"],"invocationId":"${i}","target":"JoinGroup","type":1}` +
+              String.fromCharCode(30)
+          );
+          ws.current.send(
+            `{"arguments":["${id}-3"],"invocationId":"${
+              i + 1
+            }","target":"JoinGroup","type":1}` + String.fromCharCode(30)
+          );
+          i = i + 2;
+        });
+      } else if (message.data.includes('{"type":3,"invocationId":')) {
+        // console.log("Nuevos Datos");
+        i = 0;
+      } else if (message.data === '{"type":6}' + String.fromCharCode(30)) {
+        setMessage("Recibido PING del Servidor de Puntas");
+        console.log("Recibido PING del Servidor de Puntas");
+        ws.current.send('{"type":6}' + String.fromCharCode(30));
+        console.log("Enviando PONG al Servidor de Puntas");
+        setMessage("Enviando PONG al Servidor de Puntas");
       } else {
-        setWsData({ ...wsData, data: JSON.parse(message.data.slice(0, -1)) });
-        console.log(JSON.parse(message.data.slice(0, -1)));
-        // setWsData({ ...wsData, message: `Enviado Ping: ${ping}` });
-        console.log(`Enviado Ping: ${ping}`);
+        // console.log(message);
+        setMessage("Recibido: Nuevas Puntas");
+        console.log("Recibido: Nuevas Puntas");
+
+        // a la data, la parseo y le anido el nombre del ticker para que sea mas practico despues mostrar la info
+        // console.log(message.data.slice(0, -1).split(String.fromCharCode(30)));
+        const aux = message.data
+          .slice(0, -1)
+          .split(String.fromCharCode(30))
+          .filter((d) => d !== '{"type":6}')
+          .map((d) => {
+            const id = JSON.parse(d).arguments[0].idTitulo;
+            const { name } = ids.find((d) => d.id === id);
+            return { ...JSON.parse(d).arguments[0], name };
+          });
+
+        setData(aux);
+        // setData(message.data.slice(0, -1).split(String.fromCharCode(30)));
       }
     };
-    ws.onerror = function (error) {
-      // console.log("Error: " + JSON.stringify(error));
-      setWsData({ ...wsData, error: `Error: ${JSON.stringify(error)}` });
-    };
-  }, []);
 
-  return [wsData];
+    ws.current.onerror = function (error) {
+      console.log("Error: " + JSON.stringify(error));
+      setError("Error de Websocket");
+      ws.current.close();
+    };
+
+    return () => {
+      ws.current.close();
+    };
+  }, [token, ids]);
+  //TODO no agregar la dependencia listIDS hasta crear otro arreglo en websocketlist, sino cada vez que hago setData, piso en websocketlist a listID y todo se renderiza 12312312313 veces
+
+  return [data, message, error];
 };

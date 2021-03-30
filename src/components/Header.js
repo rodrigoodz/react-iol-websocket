@@ -6,6 +6,14 @@ import Row from "./Row";
 const Text = styled.p`
   font-size: 1.2rem;
   margin: 0;
+
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const Header = () => {

@@ -4,62 +4,49 @@ import Col from "./Col";
 import Row from "./Row";
 
 const Wrapper = styled.section`
-  background-color: ${(props) => (props.variacion < 0 ? "red" : "green")};
+  background-color: ${(props) =>
+    props.variacion < 0 ? "red" : props.variacion > 0 ? "green" : "blue"};
+`;
+
+const P = styled.p`
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const Ticker = ({ data }) => {
-  // if (data) {
-  //   console.log(data[0]);
-  // }
-
-  if (!data) {
-    return null;
-  } else {
-    const {
-      idTitulo,
-      maximo,
-      variacionPuntos,
-      minimo,
-      montoOperado,
-      apertura,
-      ultimoPrecio,
-      fechaHoraFormated,
-      cantidadOperaciones,
-    } = data[0];
-    return (
-      <Wrapper variacion={variacionPuntos}>
-        <Row>
-          <Col>
-            <p>{idTitulo}</p>
-          </Col>
-          <Col>
-            <p>{variacionPuntos} %</p>
-          </Col>
-          <Col>
-            <p>{ultimoPrecio} $</p>
-          </Col>
-          <Col>
-            <p>{apertura} $</p>
-          </Col>
-          <Col>
-            <p>{maximo} $</p>
-          </Col>
-          <Col>
-            <p>{minimo} $</p>
-          </Col>
-          <Col>
-            <p>{montoOperado} M</p>
-          </Col>
-          <Col>
-            <p>{fechaHoraFormated} hs</p>
-          </Col>
-          <Col>
-            <p>{cantidadOperaciones}</p>
-          </Col>
-        </Row>
-      </Wrapper>
-    );
-  }
+  const {
+    name,
+    maximo = null,
+    variacionPuntos = null,
+    minimo = null,
+    montoOperado = null,
+    apertura = null,
+    ultimoPrecio = null,
+    fechaHoraFormated = null,
+    cantidadOperaciones = null,
+  } = data;
+  return (
+    <Wrapper variacion={variacionPuntos}>
+      <Row>
+        <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>
+        <Col>{variacionPuntos ? <P>{variacionPuntos}%</P> : <P>-</P>}</Col>
+        <Col>{ultimoPrecio ? <P>{ultimoPrecio}$</P> : <P>-</P>}</Col>
+        <Col>{apertura ? <P>{apertura}$</P> : <P>-</P>}</Col>
+        <Col>{maximo ? <P>{maximo}$</P> : <P>-</P>}</Col>
+        <Col>{minimo ? <P>{minimo}$</P> : <P>-</P>}</Col>
+        <Col>{montoOperado ? <P>{montoOperado}$</P> : <P>-</P>}</Col>
+        <Col>{fechaHoraFormated ? <P>{fechaHoraFormated}hs</P> : <P>-</P>}</Col>
+        <Col>
+          {cantidadOperaciones ? <P>{cantidadOperaciones}</P> : <P>-</P>}
+        </Col>
+      </Row>
+    </Wrapper>
+  );
 };
 
 export default Ticker;
