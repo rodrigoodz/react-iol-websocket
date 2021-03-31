@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
 `;
+
 const BodyStyle = createGlobalStyle`
   body {
     background-color: #34495e
@@ -22,10 +23,16 @@ const BodyStyle = createGlobalStyle`
 `;
 
 function WebsocketApp() {
+  /*  
+  este state ademas de servirme para no modificar el token una vez 
+  ingresado lo aprovecho para saber si mostrar la lista de tickers o no
+  */
   const [disableInput, setDisableInput] = useState(false);
 
   return (
     <>
+      <GlobalStyle />
+      <BodyStyle />
       <Helmet>
         <title>Websocket IOL</title>
         <meta
@@ -33,8 +40,7 @@ function WebsocketApp() {
           content="Websocket IOL para obtener las cotizaciones en tiempo real"
         />
       </Helmet>
-      <GlobalStyle />
-      <BodyStyle />
+
       <Title text="Websocket IOL" />
 
       <OutMarketTime>

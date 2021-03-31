@@ -81,28 +81,29 @@ const WebsocketList = () => {
     }
   }, [data, setActualData]);
 
-  //TODO tengo que hacer que el websocket se reconecte automaticamente cuando hay algun error
-
-  //TODO aca debeeria manejar la logica para agregar un nuevo ticker y que se agregue a listaIDS
+  // remover ticker -> con filter saco el ticker y actualizo el context de IDS y actualData
   const handleRemoveID = (id) => {
     setIDS(IDS.filter((d) => d.id !== id));
     setActualData(actualData.filter((d) => d.id !== id));
   };
 
+  // agregar ticker -> agrego al context el nuevo id que llega de los inputs y en actualData lo mismo
   const handleAddID = (name, id) => {
     setIDS([...IDS, { name, id }]);
     setActualData([...actualData, { name, id }]);
   };
 
+  // cambiar panel -> reemplazo directamente el context y actualData
   const handleChangePanel = (panel) => {
     const ids = getPanel(panel);
     setIDS(ids);
     setActualData(ids);
   };
 
-  // if (error) {
-  //   return <Error>{error}</Error>;
-  // }
+  // si el ws tira error no muestro la lista
+  if (error) {
+    return <Error>{error}</Error>;
+  }
 
   return (
     <Wrapper>

@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+/*
+customHook para hacer uso del WS y devolver la informacion que recibe junto a un mensaje de estado, y en caso de error
+*/
 
 export const useWS = (token, ids) => {
   const [data, setData] = useState({});
@@ -85,7 +88,6 @@ export const useWS = (token, ids) => {
       ws.current.close();
     };
   }, [token, ids]);
-  //TODO no agregar la dependencia listIDS hasta crear otro arreglo en websocketlist, sino cada vez que hago setData, piso en websocketlist a listID y todo se renderiza 12312312313 veces
 
   return [data, message, error];
 };
