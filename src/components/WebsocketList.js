@@ -19,6 +19,13 @@ const Wrapper = styled.section`
   height: 100vh;
 `;
 
+const InfoandPanelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const TickerWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -39,7 +46,6 @@ const Error = styled.p`
 `;
 
 const WsInfo = styled.div`
-  text-align: center;
   color: blue;
 `;
 
@@ -108,8 +114,10 @@ const WebsocketList = () => {
   return (
     <Wrapper>
       <TickerFinder addNewTicker={handleAddID} />
-      <WsInfo>{message.length === 0 ? loader : message}</WsInfo>
-      <PanelSelector changePanel={handleChangePanel} />
+      <InfoandPanelWrapper>
+        <WsInfo>{message.length === 0 ? loader : message}</WsInfo>
+        <PanelSelector changePanel={handleChangePanel} />
+      </InfoandPanelWrapper>
       <Header />
       <hr />
       <>

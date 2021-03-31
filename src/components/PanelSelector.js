@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+const Select = styled.select`
+  background-color: #aaa69d;
+`;
 
 const PanelSelector = ({ changePanel }) => {
   const [panel, setPanel] = useState({ value: "" });
@@ -9,12 +14,12 @@ const PanelSelector = ({ changePanel }) => {
   };
 
   return (
-    <select value={panel.value} onChange={handleChange}>
-      <option value=""> </option>
-      <option value="merval">MERVAL</option>
-      <option value="bonos">BONOS</option>
-      <option value="cedears">CEDEARS</option>
-    </select>
+    <Select value={panel.value} onChange={handleChange}>
+      <option value="">PANEL: NO SELECCIONADO</option>
+      <option value="merval">PANEL: MERVAL</option>
+      <option value="bonos">PANEL: BONOS</option>
+      <option value="cedears">PANEL: CEDEARS</option>
+    </Select>
   );
 };
 
