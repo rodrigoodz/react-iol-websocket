@@ -5,14 +5,22 @@ import Row from "./Row";
 
 const Text = styled.p`
   font-size: 1.2rem;
-  margin: 0;
+  font-weight: bold;
+  text-align: center;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1280px) {
     font-size: 0.9rem;
+  }
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 0.5rem;
   }
 `;
 
