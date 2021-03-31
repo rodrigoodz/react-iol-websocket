@@ -28,14 +28,18 @@ const InfoandPanelWrapper = styled.div`
 
 const TickerWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
 `;
 
 const BotonTicker = styled.button`
-  background: #fff;
+  background-color: #fff;
   outline: none;
   border: 0;
+  width: 1rem;
+  margin-top: 0.2rem;
+  /* border-radius: 0.2rem; */
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
 `;
 
 const Error = styled.p`
