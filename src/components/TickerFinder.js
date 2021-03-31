@@ -23,12 +23,22 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.4rem 0;
+
+  @media (min-width: 768px) {
+    width: 90%;
+    margin: auto;
+  }
+
+  @media (min-width: 1280px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 const FormWrapper = styled.form`
   display: flex;
-  width: 50%;
-  justify-content: space-evenly;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 
   @media (max-width: 640px) {
@@ -44,9 +54,14 @@ const Input = styled.input`
   outline: none;
   border-width: 0;
   background-color: #84817a;
+  margin: 0 0.3rem;
 
   &::placeholder {
     color: #aaa69d;
+  }
+
+  @media (max-width: 640px) {
+    margin: 0.1rem 0;
   }
 `;
 

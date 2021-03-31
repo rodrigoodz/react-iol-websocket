@@ -101,9 +101,9 @@ const WebsocketList = () => {
   };
 
   // si el ws tira error no muestro la lista
-  if (error) {
-    return <Error>{error}</Error>;
-  }
+  // if (error) {
+  //   return <Error>{error}</Error>;
+  // }
 
   return (
     <Wrapper>

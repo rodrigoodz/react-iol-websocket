@@ -4,7 +4,7 @@ import styled from "styled-components";
 const BTN = styled.button`
   font-size: 0.9rem;
   background-color: #aaa69d;
-  margin-left: 0.2rem;
+  margin-right: 0.5rem;
   outline: none;
   padding: 0.2rem;
   border: none;
@@ -13,6 +13,10 @@ const BTN = styled.button`
 
   &:hover {
     background-color: #ecf0f1;
+  }
+
+  @media (max-width: 640px) {
+    margin: 0.1rem 0;
   }
 `;
 
