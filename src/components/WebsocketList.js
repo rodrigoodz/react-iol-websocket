@@ -16,7 +16,7 @@ const Wrapper = styled.section`
   box-shadow: 4px 4px 50px 0px rgba(0, 0, 0, 0.75);
   max-width: 80%;
   margin: 1rem auto;
-  height: 100vh;
+  padding: 0.5rem;
 `;
 
 const InfoandPanelWrapper = styled.div`
