@@ -3,9 +3,12 @@ import styled from "styled-components";
 import Header from "./Header";
 import { useWS } from "../hooks/useWS";
 import TickerFinder from "./TickerFinder";
-import DataContext from "../context/DataContext";
+import TokenContext from "../context/TokenContext";
 import Loader from "react-loader-spinner";
 import Ticker from "./Ticker";
+import IDSContext from "../context/IDSContext";
+import PanelSelector from "./PanelSelector";
+import { getPanel } from "../helpers/getPanel";
 
 const Wrapper = styled.section`
   background-color: #bdc3c7;
@@ -39,41 +42,16 @@ const WsInfo = styled.div`
   text-align: center;
   color: blue;
 `;
-const initial_ids = [
-  { name: "ALUA", id: 17388 },
-  // { name: "BBAR", id: 1320 },
-  // { name: "BMA", id: 444 },
-  // { name: "BYMA", id: 88356 },
-  // { name: "CEPU", id: 773 },
-  // { name: "COME", id: 1016 },
-  // { name: "CRES", id: 1087 },
-  // { name: "CVH", id: 89062 },
-  // { name: "EDN", id: 34271 },
-  // { name: "GGAL", id: 3445 },
-  // { name: "MIRG", id: 1665 },
-  // { name: "PAMP", id: 1978 },
-  // { name: "SUPV", id: 83755 },
-  // { name: "TECO2", id: 2621 },
-  // { name: "TGNO4", id: 33643 },
-  // { name: "TGSU2", id: 2681 },
-  // { name: "TRAN", id: 2747 },
-  // { name: "TXAR", id: 1258 },
-  // { name: "VALO", id: 88875 },
-  // { name: "YPFD", id: 2846 },
-];
 
 const loader = <Loader type="TailSpin" color="blue" height={20} width={20} />;
 
 const WebsocketList = () => {
-  const { token } = useContext(DataContext);
-
-  const [IDS, setIDS] = useState(initial_ids);
-  const [actualData, setActualData] = useState(initial_ids);
+  const { token } = useContext(TokenContext);
+  const { IDS, setIDS } = useContext(IDSContext);
+  const [actualData, setActualData] = useState(IDS);
 
   // customHook
   const [data, message, error] = useWS(token, IDS);
-
-  // |
 
   // cuando llega nueva data del WS, actualizo actualData
   useEffect(() => {
@@ -116,6 +94,12 @@ const WebsocketList = () => {
     setActualData([...actualData, { name, id }]);
   };
 
+  const handleChangePanel = (panel) => {
+    const ids = getPanel(panel);
+    setIDS(ids);
+    setActualData(ids);
+  };
+
   // if (error) {
   //   return <Error>{error}</Error>;
   // }
@@ -124,6 +108,7 @@ const WebsocketList = () => {
     <Wrapper>
       <TickerFinder addNewTicker={handleAddID} />
       <WsInfo>{message.length === 0 ? loader : message}</WsInfo>
+      <PanelSelector changePanel={handleChangePanel} />
       <Header />
       <hr />
       <>

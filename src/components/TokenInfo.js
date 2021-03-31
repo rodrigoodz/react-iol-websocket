@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import DataContext from "../context/DataContext";
+import TokenContext from "../context/TokenContext";
 import Button from "./Button";
 
 const Input = styled.input`
@@ -50,7 +50,7 @@ const Wrapper = styled.form`
 const TokenInfo = ({ disableInput, setDisableInput }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [input, setInput] = useState("");
-  const { setToken } = useContext(DataContext);
+  const { setToken } = useContext(TokenContext);
 
   const handleInput = (e) => {
     setInput(e.target.value);
