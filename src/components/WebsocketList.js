@@ -62,6 +62,8 @@ const initial_ids = [
   // { name: "YPFD", id: 2846 },
 ];
 
+const loader = <Loader type="TailSpin" color="blue" height={20} width={20} />;
+
 const WebsocketList = () => {
   const { token } = useContext(DataContext);
 
@@ -121,17 +123,10 @@ const WebsocketList = () => {
   return (
     <Wrapper>
       <TickerFinder addNewTicker={handleAddID} />
-
-      <WsInfo>
-        {message.length === 0 ? (
-          <Loader type="TailSpin" color="blue" height={20} width={20} />
-        ) : (
-          message
-        )}
-      </WsInfo>
+      <WsInfo>{message.length === 0 ? loader : message}</WsInfo>
       <Header />
       <hr />
-      <div>
+      <>
         {actualData.map((ticker) => {
           return (
             <TickerWrapper key={ticker.id}>
@@ -142,7 +137,7 @@ const WebsocketList = () => {
             </TickerWrapper>
           );
         })}
-      </div>
+      </>
     </Wrapper>
   );
 };
