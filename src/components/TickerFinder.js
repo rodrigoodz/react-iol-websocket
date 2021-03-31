@@ -56,29 +56,29 @@ const Error = styled.p`
   margin: 0;
 `;
 
-const TickerFinder = () => {
+const TickerFinder = ({ addNewTicker }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [ticker, setTicker] = useState("");
+  const [tickerID, setTicker] = useState("");
+  const [tickerName, setTickerName] = useState("");
 
   const handleAddButton = (e) => {
     e.preventDefault();
-    if (ticker.length < 1) {
-      setErrorMessage("Error! No hay nada ingresado");
+    if (tickerID.length < 1 || tickerName.length < 1) {
+      setErrorMessage("Error! Completá los campos");
       setInterval(() => {
         setErrorMessage("");
-      }, 3000);
+      }, 2000);
     } else {
-      setErrorMessage("");
-
-      if (isNumber(ticker)) {
-        console.log("agregar id");
-        // si es  numero lo agrego...
+      if (isNumber(tickerID)) {
+        addNewTicker(tickerName.toUpperCase(), Number(tickerID));
+        setTickerName("");
+        setTicker("");
       } else {
-        setErrorMessage("Error! Ingresá un ID");
+        setErrorMessage("Error! Ingresá un ID correcto");
         setInterval(() => {
           setErrorMessage("");
-        }, 3000);
+        }, 2000);
       }
     }
   };
@@ -88,7 +88,11 @@ const TickerFinder = () => {
     setIsOpen(true);
   };
 
-  const handleInput = (e) => {
+  const handleName = (e) => {
+    setTickerName(e.target.value);
+  };
+
+  const handleID = (e) => {
     setTicker(e.target.value);
   };
 
@@ -96,11 +100,18 @@ const TickerFinder = () => {
     <Container>
       <FormWrapper>
         <Input
-          placeholder="Ingresá ID cotización"
+          placeholder="Ingresá nombre ticker"
           type="text"
-          value={ticker}
-          onChange={handleInput}
+          value={tickerName}
+          onChange={handleName}
         />
+        <Input
+          placeholder="Ingresá ID ticker"
+          type="text"
+          value={tickerID}
+          onChange={handleID}
+        />
+
         <Button
           text="Agregar"
           handleButton={handleAddButton}
