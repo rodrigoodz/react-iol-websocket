@@ -16,6 +16,18 @@ const Wrapper = styled.section`
   height: 100vh;
 `;
 
+const TickerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BotonTicker = styled.button`
+  background: #fff;
+  outline: none;
+  border: 0;
+`;
+
 const Error = styled.p`
   font-size: 2rem;
   margin-top: 1rem;
@@ -113,10 +125,16 @@ const WebsocketList = () => {
       <hr />
       <div>
         {actualData.map((ticker) => {
-          return <Ticker key={ticker.id} data={ticker} />;
+          return (
+            <TickerWrapper key={ticker.id}>
+              <Ticker data={ticker} />
+              <BotonTicker onClick={() => handleRemoveIDS(ticker.id)}>
+                X
+              </BotonTicker>
+            </TickerWrapper>
+          );
         })}
       </div>
-      <button onClick={() => handleRemoveIDS(88875)}>Remover</button>
     </Wrapper>
   );
 };

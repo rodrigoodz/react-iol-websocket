@@ -4,6 +4,7 @@ import Col from "./Col";
 import Row from "./Row";
 
 const Wrapper = styled.section`
+  flex: 1;
   background-color: ${(props) =>
     props.variacion < 0 ? "red" : props.variacion > 0 ? "green" : "blue"};
 `;
