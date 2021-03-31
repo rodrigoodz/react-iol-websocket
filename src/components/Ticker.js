@@ -7,15 +7,30 @@ const Wrapper = styled.section`
   flex: 1;
   background-color: ${(props) =>
     props.variacion < 0 ? "red" : props.variacion > 0 ? "green" : "blue"};
+
+  /* border-radius: 0.2rem; */
+  border-bottom-left-radius: 0.2rem;
+  border-top-left-radius: 0.2rem;
+  margin-top: 0.2rem;
+  @media (min-width: 640px) {
+    padding: 0.2rem;
+  }
 `;
 
 const P = styled.p`
+  @media (min-width: 1280px) {
+    font-size: 0.85rem;
+  }
   @media (max-width: 1024px) {
     font-size: 0.8rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 0.5rem;
   }
 `;
 
