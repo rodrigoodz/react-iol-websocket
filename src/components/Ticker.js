@@ -1,9 +1,10 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 import Col from "./Col";
 import Row from "./Row";
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   flex: 1;
   background-color: ${(props) =>
     props.variacion < 0 ? "red" : props.variacion > 0 ? "green" : "blue"};
@@ -34,6 +35,11 @@ const P = styled.p`
   }
 `;
 
+const tickerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 const Ticker = ({ data }) => {
   const {
     name,
@@ -48,7 +54,13 @@ const Ticker = ({ data }) => {
   } = data;
 
   return (
-    <Wrapper variacion={variacionPuntos}>
+    <Wrapper
+      variacion={variacionPuntos}
+      variants={tickerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <Row>
         <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>
         <Col>
