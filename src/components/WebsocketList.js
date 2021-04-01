@@ -74,7 +74,7 @@ const WebsocketList = () => {
               return {
                 ...a,
                 maximo: d.maximo,
-                variacionPuntos: d.variacionPuntos,
+                variacion: d.variacion,
                 minimo: d.minimo,
                 montoOperado: d.montoOperado,
                 apertura: d.apertura,

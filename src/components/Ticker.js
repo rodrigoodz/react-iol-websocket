@@ -44,7 +44,7 @@ const Ticker = ({ data }) => {
   const {
     name,
     maximo = null,
-    variacionPuntos = null,
+    variacion = null,
     minimo = null,
     montoOperado = null,
     apertura = null,
@@ -55,7 +55,7 @@ const Ticker = ({ data }) => {
 
   return (
     <Wrapper
-      variacion={variacionPuntos}
+      variacion={variacion}
       variants={tickerVariants}
       initial="hidden"
       animate="visible"
@@ -63,9 +63,7 @@ const Ticker = ({ data }) => {
     >
       <Row>
         <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>
-        <Col>
-          {variacionPuntos ? <P>{variacionPuntos.toFixed(2)}%</P> : <P>-</P>}
-        </Col>
+        <Col>{variacion ? <P>{variacion.toFixed(2)}%</P> : <P>-</P>}</Col>
         <Col>{ultimoPrecio ? <P>{ultimoPrecio.toFixed(2)}$</P> : <P>-</P>}</Col>
         <Col>{apertura ? <P>{apertura.toFixed(2)}$</P> : <P>-</P>}</Col>
         <Col>{maximo ? <P>{maximo.toFixed(2)}$</P> : <P>-</P>}</Col>
