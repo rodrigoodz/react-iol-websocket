@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 2em;
+  border: 1px solid #f3f3f3;
+  border-radius: 0.5rem;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const P = styled.p`
@@ -23,6 +26,28 @@ const Input = styled.input`
   &::placeholder {
     color: #aaa69d;
   }
+`;
+
+const Link = styled.a`
+  font-size: 0.9rem;
+  background-color: #aaa69d;
+  text-decoration: none;
+  color: black;
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  margin-top: 2rem;
+
+  &:hover {
+    background-color: #ecf0f1;
+  }
+`;
+
+const Info = styled.p`
+  color: rgba(255, 0, 0, 0.7);
+  margin-top: 2rem;
+  font-size: 0.6rem;
+  width: 30%;
+  text-align: center;
 `;
 
 const SearchModal = () => {
@@ -56,12 +81,19 @@ const SearchModal = () => {
           <option value="bcs">BCS</option>
           <option value="rofx">ROFX</option>
         </select>
-        <a
-          href={`https://www.invertironline.com/api/cotizaciones/idtitulo?simbolo=ypfd&mercado=bcba`}
-          target="blank"
-        >
-          Buscar
-        </a>
+        <>
+          <Link
+            href={`https://www.invertironline.com/api/cotizaciones/idtitulo?simbolo=${ticker}&mercado=${market.value}`}
+            target="blank"
+            disabled
+          >
+            Buscar
+          </Link>
+          <Info>
+            Si el ID que arroja la busqueda es 0, hay un error en los datos
+            ingresados o el ticker no existe en IOL
+          </Info>
+        </>
       </Form>
     </Wrapper>
   );
