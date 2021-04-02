@@ -10,7 +10,7 @@ const Input = styled.input`
   border-width: 0;
   background-color: #bdc3c7;
   width: 80%;
-  text-align: center;
+  padding-left: 0.3rem;
 
   &::placeholder {
     color: #aaa69d;
@@ -77,7 +77,7 @@ const TokenInfo = ({ disableInput, setDisableInput }) => {
   return (
     <Wrapper>
       <Input
-        placeholder="Ingresá token"
+        placeholder="Ingresá el token"
         type="text"
         value={input}
         onChange={handleInput}
