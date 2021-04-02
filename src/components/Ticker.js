@@ -7,7 +7,11 @@ import Row from "./Row";
 const Wrapper = styled(motion.section)`
   flex: 1;
   background-color: ${(props) =>
-    props.variacion < 0 ? "red" : props.variacion > 0 ? "green" : "blue"};
+    props.variacion < 0
+      ? "#e74c3c"
+      : props.variacion > 0
+      ? "#27ae60"
+      : "#2980b9"};
 
   /* border-radius: 0.2rem; */
   border-bottom-left-radius: 0.2rem;
@@ -19,6 +23,7 @@ const Wrapper = styled(motion.section)`
 `;
 
 const P = styled.p`
+  color: #2c3e50;
   @media (min-width: 1280px) {
     font-size: 0.85rem;
   }

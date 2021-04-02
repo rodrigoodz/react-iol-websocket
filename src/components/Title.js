@@ -6,7 +6,7 @@ const TitleWrapper = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   padding-top: 1.2rem;
-  color: #bdc3c7;
+  color: #feffde;
 `;
 
 const Title = ({ text }) => {

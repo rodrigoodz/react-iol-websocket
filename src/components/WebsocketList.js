@@ -33,6 +33,7 @@ const TickerWrapper = styled.div`
 
 const BotonTicker = styled.button`
   background-color: #fff;
+  color: #2c3e50;
   outline: none;
   border: 0;
   width: 1rem;
@@ -50,10 +51,12 @@ const Error = styled.p`
 `;
 
 const WsInfo = styled.div`
-  color: blue;
+  color: #1b2021;
 `;
 
-const loader = <Loader type="TailSpin" color="blue" height={20} width={20} />;
+const loader = (
+  <Loader type="TailSpin" color="#1b2021" height={20} width={20} />
+);
 
 const WebsocketList = () => {
   const { token } = useContext(TokenContext);

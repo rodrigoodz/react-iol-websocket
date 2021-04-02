@@ -7,6 +7,7 @@ const Text = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+  color: #2c3e50;
 
   @media (max-width: 1280px) {
     font-size: 0.9rem;

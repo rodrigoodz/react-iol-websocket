@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BTN = styled.button`
   font-size: 0.9rem;
-  background-color: #aaa69d;
+  background-color: #f3f4ed;
   margin-right: 0.5rem;
   outline: none;
   padding: 0.2rem;
@@ -12,7 +12,7 @@ const BTN = styled.button`
   transition: background-color 0.1s ease-in;
 
   &:hover {
-    background-color: #ecf0f1;
+    background-color: #bfcba8;
   }
 
   @media (max-width: 640px) {

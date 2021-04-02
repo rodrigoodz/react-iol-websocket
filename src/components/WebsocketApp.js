@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
 const BodyStyle = createGlobalStyle`
   body {
-    background-color: #34495e
+    background-color: #2f5d62
 
   }
 `;

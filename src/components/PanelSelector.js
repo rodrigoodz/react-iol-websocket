@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Select = styled.select`
-  background-color: #aaa69d;
+  background-color: #feffde;
+  outline: none;
+  color: #424642;
 `;
 
 const PanelSelector = ({ changePanel }) => {

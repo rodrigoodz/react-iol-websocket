@@ -16,12 +16,17 @@ const Form = styled.form`
 
 const P = styled.p`
   padding: 1rem;
+  color: #2c3e50;
 `;
 
 const Input = styled.input`
   height: 1.4rem;
   font-size: 1rem;
   border-radius: 0.2rem;
+  background-color: #feffde;
+  outline: none;
+  border: none;
+  text-align: center;
 
   &::placeholder {
     color: #aaa69d;
@@ -30,7 +35,7 @@ const Input = styled.input`
 
 const Link = styled.a`
   font-size: 0.9rem;
-  background-color: #aaa69d;
+  background-color: #5eaaa8;
   text-decoration: none;
   color: black;
   padding: 0.8rem;
@@ -38,7 +43,7 @@ const Link = styled.a`
   margin-top: 2rem;
 
   &:hover {
-    background-color: #ecf0f1;
+    background-color: #a3d2ca;
   }
 `;
 
@@ -48,6 +53,12 @@ const Info = styled.p`
   font-size: 0.6rem;
   width: 30%;
   text-align: center;
+`;
+
+const Select = styled.select`
+  background-color: #feffde;
+  outline: none;
+  color: #424642;
 `;
 
 const SearchModal = () => {
@@ -73,14 +84,14 @@ const SearchModal = () => {
           onChange={handleInput}
         />
         <P>Seleccioná Mercado</P>
-        <select value={market} onChange={handleChange}>
+        <Select value={market} onChange={handleChange}>
           <option value="bcba">BCBA</option>
           <option value="nasdaq">NASDAQ</option>
           <option value="nyse">NYSE</option>
           <option value="amex">AMEX</option>
           <option value="bcs">BCS</option>
           <option value="rofx">ROFX</option>
-        </select>
+        </Select>
         <>
           <Link
             href={`https://www.invertironline.com/api/cotizaciones/idtitulo?simbolo=${ticker}&mercado=${market.value}`}

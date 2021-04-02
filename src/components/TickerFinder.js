@@ -58,8 +58,9 @@ const Input = styled.input`
   border-radius: 0.2rem;
   outline: none;
   border-width: 0;
-  background-color: #84817a;
+  background-color: #feffde;
   margin: 0 0.3rem;
+  text-align: center;
 
   &::placeholder {
     color: #aaa69d;
