@@ -18,7 +18,10 @@ const PanelSelector = ({ changePanel }) => {
       <option value="">PANEL: NO SELECCIONADO</option>
       <option value="merval">PANEL: MERVAL</option>
       <option value="bonos">PANEL: BONOS</option>
+      <option value="opciones">PANEL: OPCIONES</option>
       <option value="cedears">PANEL: CEDEARS</option>
+      <option value="sp500">PANEL: SP500</option>
+      <option value="nasdaq100">PANEL: NASDAQ100</option>
     </Select>
   );
 };
