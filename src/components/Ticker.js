@@ -64,7 +64,6 @@ const Ticker = ({ data }) => {
       variants={tickerVariants}
       initial="hidden"
       animate="visible"
-      exit="exit"
     >
       <Row>
         <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>

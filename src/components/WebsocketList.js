@@ -129,8 +129,9 @@ const WebsocketList = () => {
       <hr />
       <>
         {actualData.map((ticker) => {
+          // hago que cambie la key para que react oblige a desmontar y montar el componente asi ver la transicion
           return (
-            <TickerWrapper key={ticker.id}>
+            <TickerWrapper key={`${ticker.id}${ticker.fechaHoraFormated}`}>
               <Ticker data={ticker} />
               <BotonTicker onClick={() => handleRemoveID(ticker.id)}>
                 X
