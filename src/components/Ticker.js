@@ -68,7 +68,9 @@ const Ticker = ({ data }) => {
     >
       <Row>
         <Col>{name ? <P>{name}</P> : <P>-</P>}</Col>
-        <Col>{variacion ? <P>{variacion.toFixed(2)}%</P> : <P>-</P>}</Col>
+        <Col>
+          {variacion != null ? <P>{variacion.toFixed(2)}%</P> : <P>-</P>}
+        </Col>
         <Col>{ultimoPrecio ? <P>{ultimoPrecio.toFixed(2)}$</P> : <P>-</P>}</Col>
         <Col>{apertura ? <P>{apertura.toFixed(2)}$</P> : <P>-</P>}</Col>
         <Col>{maximo ? <P>{maximo.toFixed(2)}$</P> : <P>-</P>}</Col>
